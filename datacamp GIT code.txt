@@ -132,3 +132,6 @@ can append the following:
 --should always set global settings for user name and password
 git config --global user.name value
 git config --global user.email value
+
+--command to unstage files
+git reset HEAD
