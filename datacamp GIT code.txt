@@ -78,3 +78,57 @@ Date:   Wed Sep 20 13:42:26 2017 +0000
 --command to only view part of log related to certain file or directory
 git log path
   --i.e. git log data/southern.csv
+
+--command to view details of specific commit,
+git show [first few characters of commits hash] --typically 6 is enough
+
+--alternatively can use HEAD, HEAD~1, HEAD~N
+--where HEAD is latest commit and HEAD~N is the commit n times before the current
+git HEAD~5
+
+--command to show who made last change to each line of a file
+git annotate filename.extension
+
+--gives output like
+04307054        (  Rep Loop     2017-09-20 13:42:26 +0000       1)# Seasonal Dental Surgeries (2017) 2017-18
+5e6f92b6        (  Rep Loop     2017-09-20 13:42:26 +0000       2)
+
+first part is commit hash digits
+second part is author
+third part date of commit
+forth the line number with the contents
+
+--command to see changes between different commits
+git diff ID1..ID2
+  --ID can be commit hash or head
+git diff abc123...def456
+git diff HEAD...HEAD~1
+
+--.gitignore file tells git to stop paying attention to these files
+--store in it aa list of wildcard patterns you want git to ignore e.g.
+build
+*.mpl
+
+--would ignore any file or directory called build and any files ending.mpl files
+
+--command to show list of files in repo whose history git isn't tracking
+git clean -n
+
+--command to delete those files
+git clean -f
+
+--list files in current working directory
+ls
+
+--command to see settings
+git config --list
+
+can append the following:
+--system --settings for every user on computer
+---global --settings for all your projects
+--local --settins for one specific project
+
+--should leave most settings alone
+--should always set global settings for user name and password
+git config --global user.name value
+git config --global user.email value
