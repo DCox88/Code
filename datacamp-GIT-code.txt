@@ -1,0 +1,166 @@
+--command to display list of files modified
+git status
+
+--the above also shows which files are in staging area
+  --changed but not yet committed
+
+--command to compare the file as is against what was last saved
+git diff filename
+
+--or to see all changes in the repo
+git diff
+
+--or to see changes in a specific directory
+git diff directory
+
+--when using git diff the output appears as:
+diff --git a/report.txt b/report.txt
+index e713b17..4c0742a 100644
+--- a/report.txt
++++ b/report.txt
+@@ -1,4 +1,5 @@
+-# Seasonal Dental Surgeries 2017-18
++# Seasonal Dental Surgeries (2017) 2017-18
++# TODO: write new summary
+
+--it shows:
+  --command used to produce output (diff --git)
+  --a and b as placeholders for first and 2nd version
+  --index line showing keys into Git'sinternal databse of changes (see further down)
+  --@@ line telling where changes are made
+    --pairs of numbers here are start line and number of lines
+    --i.e. the above indicates changes starting from line 1, 5 lines where previously was 4
+  --line by line listing of changes
+    -- + shows additions and - shows deletions
+
+
+--commiting
+  1. add at least one file to staging area
+  2. commit everything in staging area
+
+--command to add to staging area
+git add filename.extension
+
+--command to compare state of files with those in staging area
+git diff -r HEAD -- -r flag means 'compare to particular revision'
+                 --HEAD means 'most recent commit'
+
+--can restrict the above to single file or directory
+git diff -r HEAD path/to/file --path relative to where you are
+    --e.g. git diff -r HEAD data/northern.csv
+
+--command to commit changes in staging area
+git commit
+  --does all changes in stage area
+  --when undoing a commit must undo all or none of it
+
+--after doing git commit must enter a log message
+--will give you a box to enter or alternatively can do
+git commit -m "Message"
+
+--command to amend a mistyped commit message
+git commit --amend - m "new message"
+
+--command to view the log of project's history
+git log
+  --shown most recently first
+
+--example of a git log
+commit 0430705487381195993bac9c21512ccfb511056d
+Author: Rep Loop <repl@datacamp.com>
+Date:   Wed Sep 20 13:42:26 2017 +0000
+
+    Added year to report title.
+
+--press space bar to go down the log
+--press q to quit the log
+
+--command to only view part of log related to certain file or directory
+git log path
+  --i.e. git log data/southern.csv
+
+--command to view details of specific commit,
+git show [first few characters of commits hash] --typically 6 is enough
+
+--alternatively can use HEAD, HEAD~1, HEAD~N
+--where HEAD is latest commit and HEAD~N is the commit n times before the current
+git HEAD~5
+
+--command to show who made last change to each line of a file
+git annotate filename.extension
+
+--gives output like
+04307054        (  Rep Loop     2017-09-20 13:42:26 +0000       1)# Seasonal Dental Surgeries (2017) 2017-18
+5e6f92b6        (  Rep Loop     2017-09-20 13:42:26 +0000       2)
+
+first part is commit hash digits
+second part is author
+third part date of commit
+forth the line number with the contents
+
+--command to see changes between different commits
+git diff ID1..ID2
+  --ID can be commit hash or head
+git diff abc123...def456
+git diff HEAD...HEAD~1
+
+--.gitignore file tells git to stop paying attention to these files
+--store in it aa list of wildcard patterns you want git to ignore e.g.
+build
+*.mpl
+
+--would ignore any file or directory called build and any files ending.mpl files
+
+--command to show list of files in repo whose history git isn't tracking
+git clean -n
+
+--command to delete those files
+git clean -f
+
+--list files in current working directory
+ls
+
+--command to see settings
+git config --list
+
+can append the following:
+--system --settings for every user on computer
+---global --settings for all your projects
+--local --settins for one specific project
+
+--should leave most settings alone
+--should always set global settings for user name and password
+git config --global user.name value
+git config --global user.email value
+
+--command to unstage files
+git reset HEAD
+
+--command to discard (undo) changes to a file (unstaged files)
+git checkout -- filename.extension
+
+--to discard changes for staged files need to
+git reset HEAD path/to/file.extension
+git checkout path/to/file.extension
+
+--command to revert file to previous committed version
+git checkout [filehash] filename.extension
+--after doig this need to commit the restored version
+
+
+--command to limit the amount of commit shown in git log
+git log -3 report.txt
+--shows only last 3 commits for this file
+
+--command to show contents
+cat data/western.csv
+
+--can extend the above to undo all of changes that have been made
+git reset HEAD directory
+(will unstage everything for this specific directory)
+
+git checkout -- directory
+(will restore the files in directory to previous state)
+
+--for the above 2 statments directory name of . means all files in or below directory currently in
+git checkout -- .
