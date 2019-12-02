@@ -135,3 +135,32 @@ git config --global user.email value
 
 --command to unstage files
 git reset HEAD
+
+--command to discard (undo) changes to a file (unstaged files)
+git checkout -- filename.extension
+
+--to discard changes for staged files need to
+git reset HEAD path/to/file.extension
+git checkout path/to/file.extension
+
+--command to revert file to previous committed version
+git checkout [filehash] filename.extension
+--after doig this need to commit the restored version
+
+
+--command to limit the amount of commit shown in git log
+git log -3 report.txt
+--shows only last 3 commits for this file
+
+--command to show contents
+cat data/western.csv
+
+--can extend the above to undo all of changes that have been made
+git reset HEAD directory
+(will unstage everything for this specific directory)
+
+git checkout -- directory
+(will restore the files in directory to previous state)
+
+--for the above 2 statments directory name of . means all files in or below directory currently in
+git checkout -- .
