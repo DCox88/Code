@@ -164,3 +164,64 @@ git checkout -- directory
 
 --for the above 2 statments directory name of . means all files in or below directory currently in
 git checkout -- .
+
+--command to see list of branches
+git branch
+  --currently checked out branch has * next to it
+
+--command to view differences between branches
+git diff branch-1..branch-2
+
+--command to switch branch
+git checkout branch
+
+--command to delet file
+git rm filename.extension
+
+--command to create a branch
+git checkout -b branch-name
+
+--command to merge branches
+git merge source destination
+
+--merging files with conflicts need to delete a set of the below rows:
+<<<<<<< destination-branch-name
+...changes from the destination branch...
+=======
+...changes from the source branch...
+>>>>>>> source-branch-name
+
+--command to create new repo
+git init project-name
+
+--convert an exisiting project to repo using
+git init
+  or
+git init /path/to/project
+
+--commane to clone repo
+git clone URL
+git clone /existing/project
+git clone /existing/project newprojectname
+  --by defaul will clone with old repo name, so can rename it if needed using above
+
+--command to find repo origin
+git remote
+git remote -v
+  --v stands for verbose and gives more info
+
+--command to add remote
+git remote add remote-name URL
+
+--command to remove remote
+git remote rm remote-name
+
+--command to pull latest changes from repo
+git pull remote branch
+
+--git stops you pulling if jave unstaged changes, must either commit or revert first
+
+--command to push changes
+git push remote-name branch-name
+
+--cannot push changes if havent pulled latest version in 
